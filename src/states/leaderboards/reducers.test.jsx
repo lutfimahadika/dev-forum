@@ -1,0 +1,61 @@
+/**
+ * test scenario for threadsReducer
+ *
+ * - leaderboardsReducer function
+ *  - should return the initial state when given by unknown action
+ *  - should return the leadersboards when given by leaderboard/receive action
+ *
+ */
+
+import { describe, it, expect } from "vitest";
+import leaderboardsReducer from "./reducer";
+
+describe("leaderboards function", () => {
+  it("should return the initial state when given by unknown action", () => {
+    // arrange
+    const initialState = [];
+    const action = { type: "UNKONWN" };
+
+    // action
+    const nextState = leaderboardsReducer(initialState, action);
+
+    // assert
+    expect(nextState).toEqual(initialState);
+  });
+
+  it("should return the leadersboards when given by leaderboard/receive action", () => {
+    // arrange
+    const initialState = [];
+    const action = {
+      type: "leaderboard/receive",
+      payload: {
+        leaderboards: [
+          {
+            user: {
+              id: "users-1",
+              name: "John Doe",
+              email: "john@example.com",
+              avatar: "https://generated-image-url.jpg",
+            },
+            score: 10,
+          },
+          {
+            user: {
+              id: "users-2",
+              name: "Jane Doe",
+              email: "jane@example.com",
+              avatar: "https://generated-image-url.jpg",
+            },
+            score: 5,
+          },
+        ],
+      },
+    };
+
+    // action
+    const nextState = leaderboardsReducer(initialState, action);
+
+    // assert
+    expect(nextState).toEqual(action.payload.leaderboards);
+  });
+});
