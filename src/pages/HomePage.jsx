@@ -58,7 +58,7 @@ export default function HomePage() {
           setTag={setTagActive}
         />
         <Link to="/new" className="add-discuss-btn">
-          Buat Diskusi Baru
+          Diskusi Baru
           <HiPlus size={20} fill="white" />
         </Link>
       </div>
